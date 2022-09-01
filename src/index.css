@@ -20,6 +20,7 @@ code {
   background-color: #191919;
   color: white;
   position: relative;
+  margin-bottom: 1em;
 }
 
 .card-character-image {
@@ -40,4 +41,9 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card-area {
+  display: grid;
+  grid-template-columns: repeat(3, 20em);
 }
