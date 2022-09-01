@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import CharacterCard from '../components/CharacterCard';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getLocalStorage, setLocalStorage } from '../helpers/localStorage';
+
+const CardArea = styled.div`
+  margin: 0 auto;
+  width: 60em;
+  padding: 2em 0;
+  display: grid;
+  grid-template-columns: repeat(3, 20em);
+  align-content: center;
+  justify-items: center;
+`;
 
 export default class Home extends Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -17,7 +29,7 @@ export default class Home extends Component {
       const response = await fetch('https://rickandmortyapi.com/api/character');
       const data = await response.json();
 
-      setTimeout(() => this.setState({ isLoading: false, characterList: data.results }), 3000);
+      setTimeout(() => this.setState({ isLoading: false, characterList: data.results }), 1000);
     };
     fetchApi();
   }
@@ -54,7 +66,7 @@ export default class Home extends Component {
         <Header />
         {
         isLoading ? <Loading /> : (
-          <div className="card-area">
+          <CardArea>
             {
               characterList.map((character) => (
                 <CharacterCard
@@ -69,7 +81,7 @@ export default class Home extends Component {
                 />
               ))
             }
-          </div>
+          </CardArea>
         )
         }
       </>

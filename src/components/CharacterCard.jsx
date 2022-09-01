@@ -9,12 +9,12 @@ const CardArea = styled.div`
   display: flex;
   width: 15em;
   flex-direction: row;
-  padding: .5em;
+  padding: 1em;
+  border-radius: 16px;
   background-color: #191919;
   color: white;
   position: relative;
   margin-bottom: 1em;
-
   .card-character-image {
     display: flex;
     width: 100%;

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #292929;
 }
 
 code {
@@ -42,8 +43,3 @@ code {
   flex-direction: column;
   justify-content: space-between;
 } */
-
-.card-area {
-  display: grid;
-  grid-template-columns: repeat(3, 20em);
-}
