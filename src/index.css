@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.card-character-area {
+/* .card-character-area {
   display: flex;
   width: 15em;
   flex-direction: row;
@@ -41,7 +41,7 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 
 .card-area {
   display: grid;

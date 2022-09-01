@@ -3,6 +3,47 @@ import {
   string, bool, number, func,
 } from 'prop-types';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import styled from 'styled-components';
+
+const CardArea = styled.div`
+  display: flex;
+  width: 15em;
+  flex-direction: row;
+  padding: .5em;
+  background-color: #191919;
+  color: white;
+  position: relative;
+  margin-bottom: 1em;
+
+  .card-character-image {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-character-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .favorite-area {
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      font-size: 2em;
+      color: ${({ isFavorited }) => (isFavorited ? 'yellow' : 'white')};
+    }
+  }
+`;
 
 export default class CharacterCard extends Component {
   render() {
@@ -11,7 +52,7 @@ export default class CharacterCard extends Component {
     } = this.props;
 
     return (
-      <div className="card-character-area">
+      <CardArea isFavorited={isFavorited}>
         <div className="card-character-image">
           <img src={image} alt={name} />
         </div>
@@ -20,7 +61,7 @@ export default class CharacterCard extends Component {
           <span>{ name }</span>
           <span>{ status }</span>
           <span>{ gender }</span>
-          <button
+          {/* <button
             type="button"
             onClick={() => handleFavorites(id)}
           >
@@ -37,9 +78,21 @@ export default class CharacterCard extends Component {
                 </>
               )
             }
+          </button> */}
+        </div>
+
+        <div className="favorite-area">
+          <button
+            type="button"
+            title={isFavorited ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+            onClick={() => handleFavorites(id)}
+          >
+            {
+              isFavorited ? <AiFillStar /> : <AiOutlineStar />
+            }
           </button>
         </div>
-      </div>
+      </CardArea>
     );
   }
 }
