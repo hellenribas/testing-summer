@@ -28,12 +28,12 @@ export default class CharacterCard extends Component {
               isFavorited ? (
                 <>
                   <AiFillStar />
-                  <span>Favorito</span>
+                  <span>Remover dos Favorito</span>
                 </>
               ) : (
                 <>
                   <AiOutlineStar />
-                  <span>Favorito</span>
+                  <span>Adiconar nos Favorito</span>
                 </>
               )
             }
