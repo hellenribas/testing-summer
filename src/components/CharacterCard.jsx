@@ -9,10 +9,15 @@ export default class CharacterCard extends Component {
 
     return (
       <div className="card-character-area">
-        <img src={image} alt={name} />
-        <span>{ name }</span>
-        <span>{ status }</span>
-        <span>{ gender }</span>
+        <div className="card-character-image">
+          <img src={image} alt={name} />
+        </div>
+
+        <div className="card-character-details">
+          <span>{ name }</span>
+          <span>{ status }</span>
+          <span>{ gender }</span>
+        </div>
       </div>
     );
   }
