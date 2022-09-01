@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CharacterCard from '../components/CharacterCard';
+import Header from '../components/Header';
 
 export default class Home extends Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -22,21 +23,26 @@ export default class Home extends Component {
     const { characterList, isLoading } = this.state;
 
     return (
-      !isLoading && (
-        <div className="card-area">
-          {
-            characterList.map((character) => (
-              <CharacterCard
-                key={character.id}
-                image={character.image}
-                name={character.name}
-                status={character.status}
-                gender={character.gender}
-              />
-            ))
-          }
-        </div>
-      )
+      <>
+        <Header />
+        {
+        !isLoading && (
+          <div className="card-area">
+            {
+              characterList.map((character) => (
+                <CharacterCard
+                  key={character.id}
+                  image={character.image}
+                  name={character.name}
+                  status={character.status}
+                  gender={character.gender}
+                />
+              ))
+            }
+          </div>
+        )
+        }
+      </>
     );
   }
 }
