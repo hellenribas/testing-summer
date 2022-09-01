@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const HeaderArea = styled.header`
+  display: flex;
+  background-color: #191919;
+  ul {
+    display: flex;
+    a {
+      padding: 0.5em 1em;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 700;
+      &:hover {
+        background-color: #5a5a5a;
+      }
+    }
+  }
+`;
 
 export default class Header extends Component {
   render() {
     return (
-      <header>
+      <HeaderArea>
         <nav>
           <ul>
             <li>
@@ -17,7 +36,7 @@ export default class Header extends Component {
             </li>
           </ul>
         </nav>
-      </header>
+      </HeaderArea>
     );
   }
 }
