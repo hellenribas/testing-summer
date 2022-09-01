@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { string, bool } from 'prop-types';
+import {
+  string, bool, number, func,
+} from 'prop-types';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 export default class CharacterCard extends Component {
   render() {
     const {
-      image, name, status, gender, isFavorited,
+      image, name, status, gender, isFavorited, id, handleFavorites,
     } = this.props;
 
     return (
@@ -20,6 +22,7 @@ export default class CharacterCard extends Component {
           <span>{ gender }</span>
           <button
             type="button"
+            onClick={() => handleFavorites(id)}
           >
             {
               isFavorited ? (
@@ -42,9 +45,11 @@ export default class CharacterCard extends Component {
 }
 
 CharacterCard.propTypes = {
+  id: number.isRequired,
   image: string.isRequired,
   name: string.isRequired,
   status: string.isRequired,
   gender: string.isRequired,
   isFavorited: bool.isRequired,
+  handleFavorites: func.isRequired,
 };

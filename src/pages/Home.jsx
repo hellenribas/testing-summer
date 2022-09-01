@@ -6,6 +6,7 @@ export default class Home extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
     characterList: [],
+    favoritedCharacters: [], // Id dos personagens favoritados
     isLoading: true,
   };
 
@@ -18,6 +19,22 @@ export default class Home extends Component {
     };
     fetchApi();
   }
+
+  handleFavorites = (id) => {
+    const { favoritedCharacters } = this.state;
+    const favoritedChar = favoritedCharacters.find((favoritedId) => favoritedId === id);
+    if (favoritedChar) { // Remove personnagem favorito
+      const updatedFavorites = favoritedCharacters.filter((favoritedId) => favoritedId !== id);
+      this.setState({ favoritedCharacters: updatedFavorites });
+    } else { // Adiciona personagem favorito
+      this.setState({ favoritedCharacters: [...favoritedCharacters, id] });
+    }
+  };
+
+  getFavorited = (id) => {
+    const { favoritedCharacters } = this.state;
+    return favoritedCharacters.some((favoriteId) => favoriteId === id);
+  };
 
   render() {
     const { characterList, isLoading } = this.state;
@@ -32,11 +49,13 @@ export default class Home extends Component {
               characterList.map((character) => (
                 <CharacterCard
                   key={character.id}
+                  id={character.id}
                   image={character.image}
                   name={character.name}
                   status={character.status}
                   gender={character.gender}
-                  isFavorited={false}
+                  handleFavorites={this.handleFavorites}
+                  isFavorited={this.getFavorited(character.id)}
                 />
               ))
             }
