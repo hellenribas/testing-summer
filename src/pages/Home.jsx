@@ -36,6 +36,7 @@ export default class Home extends Component {
                   name={character.name}
                   status={character.status}
                   gender={character.gender}
+                  isFavorited={false}
                 />
               ))
             }

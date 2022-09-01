@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, bool } from 'prop-types';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 export default class CharacterCard extends Component {
   render() {
     const {
-      image, name, status, gender,
+      image, name, status, gender, isFavorited,
     } = this.props;
 
     return (
@@ -17,6 +18,23 @@ export default class CharacterCard extends Component {
           <span>{ name }</span>
           <span>{ status }</span>
           <span>{ gender }</span>
+          <button
+            type="button"
+          >
+            {
+              isFavorited ? (
+                <>
+                  <AiFillStar />
+                  <span>Favorito</span>
+                </>
+              ) : (
+                <>
+                  <AiOutlineStar />
+                  <span>Favorito</span>
+                </>
+              )
+            }
+          </button>
         </div>
       </div>
     );
@@ -28,4 +46,5 @@ CharacterCard.propTypes = {
   name: string.isRequired,
   status: string.isRequired,
   gender: string.isRequired,
+  isFavorited: bool.isRequired,
 };
