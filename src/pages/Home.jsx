@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CharacterCard from '../components/CharacterCard';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import { getLocalStorage, setLocalStorage } from '../helpers/localStorage';
 
 export default class Home extends Component {
@@ -16,7 +17,7 @@ export default class Home extends Component {
       const response = await fetch('https://rickandmortyapi.com/api/character');
       const data = await response.json();
 
-      this.setState({ isLoading: false, characterList: data.results });
+      setTimeout(() => this.setState({ isLoading: false, characterList: data.results }), 3000);
     };
     fetchApi();
   }
@@ -52,7 +53,7 @@ export default class Home extends Component {
       <>
         <Header />
         {
-        !isLoading && (
+        isLoading ? <Loading /> : (
           <div className="card-area">
             {
               characterList.map((character) => (
