@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import CharacterCard from '../components/CharacterCard';
 import Header from '../components/Header';
+import { getLocalStorage, setLocalStorage } from '../helpers/localStorage';
 
 export default class Home extends Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
     characterList: [],
-    favoritedCharacters: [], // Id dos personagens favoritados
+    favoritedCharacters: getLocalStorage('favoritedCharacters') || [], // Id dos personagens favoritados
     isLoading: true,
   };
 
@@ -20,14 +21,22 @@ export default class Home extends Component {
     fetchApi();
   }
 
+  updateFavoritesLocalstorage = () => {
+    const { favoritedCharacters } = this.state;
+    setLocalStorage('favoritedCharacters', favoritedCharacters);
+  };
+
   handleFavorites = (id) => {
     const { favoritedCharacters } = this.state;
     const favoritedChar = favoritedCharacters.find((favoritedId) => favoritedId === id);
     if (favoritedChar) { // Remove personnagem favorito
       const updatedFavorites = favoritedCharacters.filter((favoritedId) => favoritedId !== id);
-      this.setState({ favoritedCharacters: updatedFavorites });
+      this.setState({ favoritedCharacters: updatedFavorites }, this.updateFavoritesLocalstorage);
     } else { // Adiciona personagem favorito
-      this.setState({ favoritedCharacters: [...favoritedCharacters, id] });
+      this.setState(
+        { favoritedCharacters: [...favoritedCharacters, id] },
+        this.updateFavoritesLocalstorage,
+      );
     }
   };
 
