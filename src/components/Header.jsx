@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderArea = styled.header`
@@ -21,21 +23,23 @@ const HeaderArea = styled.header`
 
 export default class Header extends Component {
   render() {
+    const { user } = this.props;
     return (
       <HeaderArea>
         <nav>
           <ul>
             <li>
-              <a href="/characters">Characters</a>
+              <Link to="/characters">Characters</Link>
             </li>
             <li>
-              <a href="/locations">Locations</a>
+              <Link to="/locations">Locations</Link>
             </li>
             <li>
-              <a href="/favorites">Favorites</a>
+              <Link to="/favorites">Favorites</Link>
             </li>
           </ul>
         </nav>
+        <p>{user}</p>
       </HeaderArea>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   string, bool, number, func,
 } from 'prop-types';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+// import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const CardArea = styled.div`
@@ -46,10 +46,18 @@ const CardArea = styled.div`
 `;
 
 export default class CharacterCard extends Component {
+  constructor() {
+    super();
+    this.state = {
+    };
+  }
+
   render() {
     const {
+      // eslint-disable-next-line react/prop-types
       image, name, status, gender, isFavorited, id, handleFavorites,
     } = this.props;
+    const { checkFav } = this.state;
 
     return (
       <CardArea isFavorited={isFavorited}>
@@ -82,7 +90,7 @@ export default class CharacterCard extends Component {
         </div>
 
         <div className="favorite-area">
-          <button
+          {/* <button
             type="button"
             title={isFavorited ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
             onClick={() => handleFavorites(id)}
@@ -90,7 +98,8 @@ export default class CharacterCard extends Component {
             {
               isFavorited ? <AiFillStar /> : <AiOutlineStar />
             }
-          </button>
+          </button> */}
+          <input type="checkbox" onChange={handleFavorites} checked={checkFav} id={id} />
         </div>
       </CardArea>
     );
