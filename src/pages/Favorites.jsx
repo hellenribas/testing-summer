@@ -38,6 +38,7 @@ export default class Favorites extends Component {
           favoriteArray.map((character) => (
             <CharacterCard
               key={character.id}
+              data-test-id={character.id}
               id={character.id}
               image={character.image}
               name={character.name}
